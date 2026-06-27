@@ -3,7 +3,7 @@ import logging
 import random
 from pyrogram import Client
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-from pytgcalls import PyTgCalls   # ← غيرنا هنا
+from pytgcalls import PyTgCalls
 from pytgcalls.types import MediaStream, AudioQuality
 from pytgcalls.exceptions import NoActiveGroupCall, NotInCallError
 import yt_dlp
@@ -23,12 +23,10 @@ class MusicPlayer:
         self.repeat_mode = {}
         self.volumes = {}
 
-        # معالجة نهاية الأغنية
-        @self.call_py.on_update()
-        async def on_stream_update(client, update):
-            if isinstance(update, StreamAudioEnded):
-                chat_id = update.chat_id
-                await self._on_stream_end(chat_id)
+        @self.call_py.on_stream_end()
+        async def on_end(_, update):
+            chat_id = update.chat_id
+            await self._on_stream_end(chat_id)
 
     async def start(self):
         await self.call_py.start()
@@ -141,9 +139,9 @@ class MusicPlayer:
             )
 
             if chat_id in self.current:
-                await self.call_py.change_stream(chat_id, stream, stream_type="audio")
+                await self.call_py.change_stream(chat_id, stream)
             else:
-                await self.call_py.join_group_call(chat_id, stream, stream_type="audio")
+                await self.call_py.join_group_call(chat_id, stream)
 
             self.current[chat_id] = song
 
@@ -262,9 +260,9 @@ class MusicPlayer:
         try:
             stream = MediaStream(url, audio_quality=AudioQuality.HIGH)
             if chat_id in self.current:
-                await self.call_py.change_stream(chat_id, stream, stream_type="audio")
+                await self.call_py.change_stream(chat_id, stream)
             else:
-                await self.call_py.join_group_call(chat_id, stream, stream_type="audio")
+                await self.call_py.join_group_call(chat_id, stream)
             self.current[chat_id] = song
             await msg.edit(
                 f"📻 **يبث الآن:**\n\n**{name}**\n\n👤 شغّل بواسطة: {song['requested_by']}",
@@ -348,7 +346,7 @@ class MusicPlayer:
     async def join_voice_chat(self, chat_id: int) -> bool:
         try:
             stream = MediaStream("http://stream.zeno.fm/0r0xa792kwzuv", audio_quality=AudioQuality.LOW)
-            await self.call_py.join_group_call(chat_id, stream, stream_type="audio")
+            await self.call_py.join_group_call(chat_id, stream)
             return True
         except:
             return False
