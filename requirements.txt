@@ -1,6 +1,6 @@
 pyrofork==2.3.69
 TgCrypto==1.2.5
-py-tgcalls==2.3.3
+tgcaller
 motor==3.7.1
 pymongo==4.10.1
 yt-dlp==2026.6.9
