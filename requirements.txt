@@ -1,0 +1,10 @@
+pyrogram==2.0.106
+TgCrypto==1.2.5
+py-tgcalls==2.3.3
+motor==3.7.1
+pymongo==4.10.1
+yt-dlp==2026.6.9
+aiohttp==3.11.18
+aiofiles==24.1.0
+Pillow==11.2.1
+python-dotenv==1.1.0

@@ -1,0 +1,8 @@
+[phases.setup]
+aptPkgs = ["ffmpeg", "gcc", "libopus-dev", "python3-dev"]
+
+[phases.install]
+cmds = ["pip install -r requirements.txt"]
+
+[start]
+cmd = "python bot.py"
