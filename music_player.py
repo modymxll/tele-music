@@ -24,10 +24,11 @@ class MusicPlayer:
         self.repeat_mode = {}
         self.volumes = {}
 
-        @self.call_py.on_stream_end()
-        async def on_end(_, update):
-            chat_id = update.chat_id
-            await self._on_stream_end(chat_id)
+        @self.call_py.on_update()
+        async def on_stream_update(client, update):
+            if isinstance(update, StreamAudioEnded):
+                chat_id = update.chat_id
+                await self._on_stream_end(chat_id)
 
     async def start(self):
         await self.call_py.start()
