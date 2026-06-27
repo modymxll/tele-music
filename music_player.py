@@ -3,9 +3,10 @@ import logging
 import random
 from pyrogram import Client
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-from pytgcalls import PyTgCalls
-from pytgcalls.types import MediaStream, AudioQuality
-from pytgcalls.exceptions import NoActiveGroupCall, NotInCallError
+from py_tgcalls import PyTgCalls   # أو from pytgcalls import PyTgCalls
+from py_tgcalls.types import MediaStream, AudioQuality
+from py_tgcalls.exceptions import NoActiveGroupCall, NotInCallError
+from py_tgcalls.types.stream import StreamAudioEnded  # مهم جداً
 import yt_dlp
 from database import Database
 from config import Config
