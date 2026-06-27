@@ -825,12 +825,10 @@ async def main():
     await db.initialize()
     logger.info("✅ قاعدة البيانات جاهزة")
     
-    await app.start()          # ← هذا موجود بالفعل
+    await app.start()
     me = await app.get_me()
     logger.info(f"✅ البوت يعمل: @{me.username}")
     
-    # ─────── أضف السطر ده هنا ───────
-    await player.start()
-    # ─────────────────────────────────
+    await player.start()   # ← السطر الجديد المهم
     
     await app.idle()
