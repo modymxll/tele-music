@@ -3,7 +3,7 @@ import logging
 import random
 from pyrogram import Client
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-from py_tgcalls import PyTgCalls
+from pytgcalls import PyTgCalls
 from py_tgcalls.types import MediaStream, AudioQuality
 from py_tgcalls.exceptions import NoActiveGroupCall, NotInCallError
 from py_tgcalls.types.stream import StreamAudioEnded
