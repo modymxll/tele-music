@@ -825,11 +825,12 @@ async def main():
     await db.initialize()
     logger.info("✅ قاعدة البيانات جاهزة")
     
-    await app.start()
+    await app.start()          # ← هذا موجود بالفعل
     me = await app.get_me()
     logger.info(f"✅ البوت يعمل: @{me.username}")
     
+    # ─────── أضف السطر ده هنا ───────
+    await player.start()
+    # ─────────────────────────────────
+    
     await app.idle()
-
-if __name__ == "__main__":
-    asyncio.run(main())
