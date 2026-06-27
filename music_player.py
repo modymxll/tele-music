@@ -3,10 +3,10 @@ import logging
 import random
 from pyrogram import Client
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
-from py_tgcalls import PyTgCalls
-from py_tgcalls.types import MediaStream, AudioQuality
-from py_tgcalls.exceptions import NoActiveGroupCall, NotInCallError
-from py_tgcalls.types.stream import StreamAudioEnded
+from pytgcalls import PyTgCalls
+from pytgcalls.types import MediaStream, AudioQuality
+from pytgcalls.exceptions import NoActiveGroupCall, NotInCallError
+# احذف سطر StreamAudioEnded مؤقتاً
 import yt_dlp
 from database import Database
 from config import Config
